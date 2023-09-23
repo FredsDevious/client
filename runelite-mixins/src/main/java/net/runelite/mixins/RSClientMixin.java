@@ -248,7 +248,7 @@ public abstract class RSClientMixin implements RSClient
 	private static boolean invertYaw;
 
 	@Inject
-	private boolean gpu;
+	private int gpuFlags;
 
 	@Inject
 	private static boolean oldIsResized;
@@ -2351,14 +2351,21 @@ public abstract class RSClientMixin implements RSClient
 	@Override
 	public boolean isGpu()
 	{
-		return gpu;
+		return (gpuFlags & 1) == 1;
 	}
 
 	@Inject
 	@Override
-	public void setGpu(boolean gpu)
+	public void setGpuFlags(int gpuFlags)
 	{
-		this.gpu = gpu;
+		this.gpuFlags = gpuFlags;
+	}
+
+	@Inject
+	@Override
+	public int getGpuFlags()
+	{
+		return gpuFlags;
 	}
 
 	@Inject
@@ -3184,18 +3191,14 @@ public abstract class RSClientMixin implements RSClient
 		check("StructDefinition_cached", client.getRSStructCompositionCache());
 		check("HealthBarDefinition_cached", client.getHealthBarCache());
 		check("HealthBarDefinition_cachedSprites", client.getHealthBarSpriteCache());
-		check("ObjectDefinition_cachedModels", client.getObjectDefinitionModelsCache());
-		check("Widget_cachedSprites", client.getWidgetSpriteCache());
 		check("ItemDefinition_cached", client.getItemCompositionCache());
 		check("VarbitDefinition_cached", client.getVarbitCache());
 		check("EnumDefinition_cached", client.getEnumDefinitionCache());
 		check("FloorUnderlayDefinition_cached", client.getFloorUnderlayDefinitionCache());
 		check("FloorOverlayDefinition_cached", client.getFloorOverlayDefinitionCache());
 		check("HitSplatDefinition_cached", client.getHitSplatDefinitionCache());
-		//check("HitSplatDefinition_cachedSprites", client.getHitSplatDefinitionSpritesCache());
 		check("HitSplatDefinition_cachedFonts", client.getHitSplatDefinitionDontsCache());
 		check("InvDefinition_cached", client.getInvDefinitionCache());
-		check("ItemDefinition_cachedModels", client.getItemDefinitionModelsCache());
 		check("ItemDefinition_cachedSprites", client.getItemDefinitionSpritesCache());
 		check("KitDefinition_cached", client.getKitDefinitionCache());
 		check("NpcDefinition_cached", client.getNpcDefinitionCache());
@@ -3209,13 +3212,8 @@ public abstract class RSClientMixin implements RSClient
 		check("SequenceDefinition_cachedFrames", client.getSequenceDefinitionFramesCache());
 		check("SequenceDefinition_cachedModel", client.getSequenceDefinitionModelsCache());
 		check("SpotAnimationDefinition_cached", client.getSpotAnimationDefinitionCache());
-		check("SpotAnimationDefinition_cachedModels", client.getSpotAnimationDefinitionModlesCache());
 		check("VarcInt_cached", client.getVarcIntCache());
 		check("VarpDefinition_cached", client.getVarpDefinitionCache());
-		check("Widget_cachedModels", client.getModelsCache());
-		check("Widget_cachedFonts", client.getFontsCache());
-		check("Widget_cachedSpriteMasks", client.getSpriteMasksCache());
-		check("WorldMapElement_cachedSprites", client.getSpritesCache());
 		check("DBRowType_cache", client.getDbRowTypeCache());
 		check("DBTableType_cache", client.getDbTableTypeCache());
 		check("DBTableIndex_cache", client.getDbTableIndexCache());
@@ -3671,6 +3669,23 @@ public abstract class RSClientMixin implements RSClient
 		{
 			this.callbacks.post(new AccountHashChanged());
 		}
+	}
+
+	@Inject
+	private int expandedMapLoadingChunks;
+
+	@Inject
+	@Override
+	public void setExpandedMapLoading(int chunks)
+	{
+		this.expandedMapLoadingChunks = Ints.constrainToRange(chunks, 0, 5);
+	}
+
+	@Inject
+	@Override
+	public int getExpandedMapLoading()
+	{
+		return expandedMapLoadingChunks;
 	}
 }
 
