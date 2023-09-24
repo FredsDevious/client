@@ -226,11 +226,11 @@ public class RuneLite
 			System.exit(0);
 		}
 
-		if (options.has("debug"))
-		{
+//		if (options.has("debug"))
+//		{
 			final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
 			logger.setLevel(Level.DEBUG);
-		}
+//		}
 
 		if (options.has("proxy"))
 		{
