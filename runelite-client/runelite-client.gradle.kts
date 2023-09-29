@@ -176,6 +176,10 @@ tasks {
             filter(ReplaceTokens::class, "tokens" to tokens)
             filteringCharset = "UTF-8"
         }
+
+        outputs.upToDateWhen {
+            false
+        }
     }
 
     jar {
@@ -191,10 +195,15 @@ tasks {
     assembleScripts {
         val inp = "${projectDir}/src/main/scripts"
         val out = "${buildDir}/scripts/runelite"
+        logger.warn("inscript: {}", inp)
+        logger.warn("outpath: {}", out)
 
         inputs.dir(inp)
         outputs.dir(out)
 
+        outputs.upToDateWhen {
+            false
+        }
         input.set(file(inp))
         output.set(file(out))
     }

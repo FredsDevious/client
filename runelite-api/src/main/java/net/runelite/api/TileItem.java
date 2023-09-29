@@ -28,6 +28,8 @@ import net.unethicalite.api.SceneEntity;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 
+import javax.annotation.Nullable;
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -101,4 +103,8 @@ public interface TileItem extends Renderable, SceneEntity
 	{
 		return inventoryActions().contains(action);
 	}
+
+	@Nullable
+	Shape getClickbox();
+
 }

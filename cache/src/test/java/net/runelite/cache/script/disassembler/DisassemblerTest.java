@@ -36,8 +36,6 @@ import net.runelite.cache.fs.Archive;
 import net.runelite.cache.fs.Index;
 import net.runelite.cache.fs.Storage;
 import net.runelite.cache.fs.Store;
-import org.junit.Rule;
-import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,12 +44,12 @@ public class DisassemblerTest
 {
 	private static final Logger logger = LoggerFactory.getLogger(DisassemblerTest.class);
 
-	@Rule
-	public TemporaryFolder folder = StoreLocation.getTemporaryFolder();
 
-	@Test
-	public void test() throws IOException
+	public static void main(String[] args) throws IOException
 	{
+		TemporaryFolder folder = StoreLocation.getTemporaryFolder();
+		folder.create();
+
 		File outDir = folder.newFolder();
 		int count = 0;
 

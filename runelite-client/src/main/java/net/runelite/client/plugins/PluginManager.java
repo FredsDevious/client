@@ -92,7 +92,7 @@ public class PluginManager
 	 * Base package where the core plugins are
 	 */
 	private static final String PLUGIN_PACKAGE = "net.runelite.client.plugins";
-	private static final File SIDELOADED_PLUGINS = new File(RuneLite.RUNELITE_DIR, "sideloaded-plugins");
+	private static final File SIDELOADED_PLUGINS = new File(RuneLite.RUNELITE_DIR, "	sideloaded-plugins");
 
 	private final boolean developerMode;
 	private final boolean safeMode;

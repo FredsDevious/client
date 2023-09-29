@@ -1,5 +1,6 @@
 package net.runelite.mixins;
 
+import net.runelite.api.Perspective;
 import net.runelite.api.Tile;
 import net.runelite.api.events.ItemQuantityChanged;
 import net.runelite.api.mixins.FieldHook;
@@ -8,6 +9,8 @@ import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSTileItem;
+
+import java.awt.*;
 
 @Mixin(RSTileItem.class)
 public abstract class RSTileItemMixin implements RSTileItem
@@ -96,5 +99,12 @@ public abstract class RSTileItemMixin implements RSTileItem
 	public void setY(int y)
 	{
 		rl$sceneY = y;
+	}
+
+	@Inject
+	@Override
+	public Shape getClickbox()
+	{
+		return Perspective.getClickbox(client, getModel(),  0, getLocalLocation());
 	}
 }
