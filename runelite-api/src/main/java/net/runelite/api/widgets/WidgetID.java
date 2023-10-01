@@ -246,11 +246,14 @@ public final class WidgetID
 	{
 		static final int HEAD_MODEL = 2;
 		static final int NAME = 4;
+		static final int CONT = 5;
 		static final int TEXT = 6;
 	}
 
 	static class DialogPlayer
 	{
+		static final int NAME = 4;
+		static final int CONT = 5;
 		static final int TEXT = 6;
 	}
 

@@ -636,6 +636,11 @@ public final class Varbits
 	 */
 	public static final int DRAGONFIRE_SHIELD_COOLDOWN = 6539;
 
+
+	/**
+	 * Bank settings/flags
+	 **/
+	public static final int BANK_NOTE_FLAG = 3958;
 	/**
 	 * Amount of items in each bank tab
 	 */
