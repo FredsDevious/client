@@ -82,7 +82,7 @@ public class Ping
 					}
 					catch (Exception ex)
 					{
-						log.debug("error during icmp ping", ex);
+						// log.debug("error during icmp ping", ex);
 						return tcpPing(inetAddress);
 					}
 				default:
